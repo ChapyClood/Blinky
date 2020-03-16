@@ -9,8 +9,8 @@
 #include <stdint.h>
 
 void delay(){
-    volatile uint8_t i;
-    for(i=0; i<0xFF; i++){
+    volatile uint16_t i;
+    for(i=0; i<0x4FFF; i++){
 
     }
 }
