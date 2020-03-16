@@ -37,21 +37,19 @@ int main(void)
     init_ADC();
 
     uint16_t adcValue = 0;
-    uint8_t adcUpdated = 0;
-
+    
     while (1) 
     {
         // Reading ADC value
-        ADCSRA = |= (1<<6);
+        ADCSRA |= (1<<6);
         // Checking/waiting until adc value has updated
-        adcUpdated = ADCSRA & 0x10
         while(ADCSRA != 0x10){
             // waiting
         }
         // Read adc value
         adcValue = ADCH;
-        adcValue<<8;
-        adcValue = ADCL;
+        adcValue <<= 8;
+        adcValue |= ADCL;
 
         // LED blinking with a frequency that depends on the adc value
         PORTB |= (1<<5);
