@@ -24,7 +24,7 @@ void init_ADC(){
     // Using AREF as reference (Connect Vcc -> AREF Pin20)
     // Leaving the ADC value right adjusted
     // Setting the MUX to ADC0
-    ADMUX = 0x00;
+    ADMUX = 0x40;
     // Enabling the ADC
     ADCSRA = 0;
     ADCSRA |= (1<<7);
