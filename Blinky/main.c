@@ -9,8 +9,8 @@
 #include <stdint.h>
 
 void delay(uint16_t n){
-    volatile uint32_t i;
-    for(i=0; i<(2*n); i++){
+    volatile uint16_t i;
+    for(i=0; i<n; i++){
         // Delay depends on n
     }
 }
@@ -63,7 +63,6 @@ uint16_t read_ADC()
 int main(void)
 {
 	uint16_t adcValue = 0;
-	uint8_t check = 0x00;
 	
     // LED_Pin: PB5
     init_LED();
@@ -86,7 +85,7 @@ int main(void)
         PORTB |= (1<<5);
         delay(adcValue);
         PORTB &= ~(1<<5);
-        delay(adcValue);
+        delay(500);
     }
 }
 
