@@ -32,18 +32,17 @@ void init_ADC(){
 	// free running mode
 	ADCSRB = 0;
 	
+	
+	// dissable digital function of pin
 	DIDR0 = 0;
 	DIDR0 |= 0x01;
 	
-	// Pin C0 is high Z input
+	// Pin C0 is high Z input (optional)
 	DDRC &= ~0x01;
 	PORTC &= ~0x01;
 	
-	
-	
 	// enable adc
 	ADCSRA |= (1 << ADEN);
-	
 	
 }
 
@@ -52,10 +51,9 @@ uint16_t read_ADC()
 	// Reading ADC value
 	// start adc conversion
 	ADCSRA |= (1<<ADSC);
-	// Checking/waiting until adc value has updated
 	
-	// wait for conversion completion (poll for ADIF flag)
-	while( ADCSRA & (1<<ADSC) );
+	// poll for completion (wait until ADSC is erased by hardware)
+	while(ADCSRA & (1<<ADSC));
 	
 	return ADC;//(uint16_t) ((ADCH << 8) | ADCL);
 }
