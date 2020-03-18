@@ -71,14 +71,6 @@ int main(void)
     
     while (1) 
     {
-		
-		#if 0
-        // Read adc value
-        adcValue = ADCH;
-        adcValue <<= 8;
-        adcValue |= ADCL;
-		#endif
-
 		adcValue = read_ADC();
 			
         // LED blinking with a frequency that depends on the adc value
