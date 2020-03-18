@@ -21,7 +21,7 @@ void init_LED(){
 }
 
 void init_ADC(){
-    // Using AREF as reference (Connect Vcc -> AREF Pin20)
+    // Using AVCC with external capacitor at AREF pin (Connect capacitor -> AREF Pin20)
     // Leaving the ADC value right adjusted
     // Setting the MUX to ADC0
     ADMUX = 0x40;
@@ -43,7 +43,10 @@ int main(void)
         // Reading ADC value
         ADCSRA |= (1<<6);
         // Checking/waiting until adc value has updated
-        while(ADCSRA != 0x10){
+        uint8_t check = 0x00;
+        while(check != 0x10){
+            // Masking for adc value check
+            check = ADCSRA & 0x10;
             // waiting
         }
         // Read adc value
