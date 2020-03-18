@@ -9,8 +9,8 @@
 #include <stdint.h>
 
 void delay(uint16_t n){
-    volatile uint16_t i;
-    for(i=0; i<n; i++){
+    volatile uint32_t i;
+    for(i=0; i<(2*n); i++){
         // Delay depends on n
     }
 }
@@ -86,7 +86,7 @@ int main(void)
         PORTB |= (1<<5);
         delay(adcValue);
         PORTB &= ~(1<<5);
-        delay(500);
+        delay(adcValue);
     }
 }
 
